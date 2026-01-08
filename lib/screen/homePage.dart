@@ -25,7 +25,13 @@ class _homePageState extends State<homePage> {
         actions: [
           TextButton(
             onPressed: () {
-              _todoController.addTask(_textEditingController.text);
+              if (_textEditingController.text.isNotEmpty) {
+                setState(() {
+                  _todoController.addTask(_textEditingController.text);
+                });
+                _textEditingController.clear();
+              }
+
               Navigator.of(context).pop();
             },
             child: const Text('Add'),
